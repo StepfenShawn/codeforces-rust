@@ -37,6 +37,10 @@ macro_rules! array_2d {
     }
 }
 ```
+
+# Data Structures
+* [SparseTable(ST)](./ST.rs)
+
 # Example
 [F. Array Partition](https://codeforces.com/contest/1454/problem/F):  
 ```rust
