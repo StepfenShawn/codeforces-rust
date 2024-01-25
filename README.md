@@ -36,6 +36,18 @@ macro_rules! array_2d {
         vec![vec![0; $m]; $n]
     }
 }
+
+fn solve() {
+    // ...
+}
+
+fn main() {
+    io_init!(scan, out);
+    let t = scan.next();
+    for _ in 0..t {
+        solve();
+    }
+}
 ```
 
 # Data Structures
