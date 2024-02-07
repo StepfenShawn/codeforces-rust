@@ -28,6 +28,13 @@ macro_rules! io_init {
     };
 }
 
+macro_rules! input {
+    ($scan: ident, $($v: pat => $t: ty), *) => {
+        let mut scan = $scan;
+        $(let $v = scan.next::<$t>();)*
+    };
+}
+
 macro_rules! array_2d {
     ($n: expr, $m: expr) => {
         vec![vec![0; $m]; $n]
@@ -40,7 +47,7 @@ fn solve() {
 
 fn main() {
     io_init!(scan, out);
-    let t = scan.next();
+    input!(scan, t=>i32);
     for _ in 0..t {
         solve();
     }
