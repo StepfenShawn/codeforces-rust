@@ -70,8 +70,8 @@ fn solve() {
 }
 
 fn main() {
-    io_init!(scan, out);
-    input!(scan, t=>i32);
+    io_init!(scan, _out);
+    read!(scan, t=>i32);
     for _ in 0..t {
         solve();
     }
