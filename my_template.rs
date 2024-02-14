@@ -3,39 +3,24 @@ use std::cmp::{min,max};
 use std::io::{BufWriter, stdin, stdout, Write};
  
 #[derive(Default)]
-struct Scanner {
-    buffer: Vec<String>
-}
-
-#[warn(dead_code)]
-enum Split {
-    WHITESPACE,
-    NEWLINE
-}
+struct Scanner { buffer: Vec<String> }
 
 impl Scanner {
-    fn read<T: std::str::FromStr>(&mut self, split_ty: Split) -> T {
+    fn next<T: std::str::FromStr>(&mut self) -> T {
         loop {
             if let Some(token) = self.buffer.pop() {
                 return token.parse().ok().expect("Failed parse");
             }
             let mut input = String::new();
             stdin().read_line(&mut input).expect("Failed read");
-            match split_ty {
-                Split::WHITESPACE =>
-                    self.buffer = input.split_whitespace().rev().map(String::from).collect(),
-                Split::NEWLINE =>
-                    self.buffer = input.split_inclusive("\n").rev().map(String::from).collect()
-            }
+            self.buffer = input.split_whitespace().rev().map(String::from).collect()
         }
     }
 
-    pub fn next<T: std::str::FromStr>(&mut self) -> T {
-        self.read::<T>(Split::WHITESPACE)
-    }
-
-    pub fn next_line<T: std::str::FromStr>(&mut self) -> T {
-        self.read::<T>(Split::NEWLINE)
+    pub fn next_line(&mut self) -> String {
+        let mut input = String::new();
+        stdin().read_line(&mut input).expect("Failed read");
+        input.trim().to_string()
     }
 }
 
@@ -51,18 +36,6 @@ macro_rules! read {
     ($scan: ident, $($v: pat => $t: ty), *) => {
         $(let $v = $scan.next::<$t>();)*
     };
-}
-
-macro_rules! read_line {
-    ($scan: ident, $($v: pat => $t: ty), *) => {
-        $(let $v = $scan.next_line::<$t>();)*
-    };
-}
-
-macro_rules! array_2d {
-    ($n: expr, $m: expr) => {
-        vec![vec![0; $m]; $n]
-    }
 }
 
 fn solve() {
