@@ -1,5 +1,5 @@
 # How to use?
-Initilize it:  
+Initialize it:  
 ```rust
 io_init!(scan, _out);
 ```
