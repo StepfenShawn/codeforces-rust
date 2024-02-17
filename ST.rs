@@ -1,3 +1,9 @@
+macro_rules! array_2d {
+    ($n: expr, $m: expr) => {
+        vec![vec![0; $m]; $n]
+    }
+}
+
 struct ST {
     mx: Vec<Vec<i32>>,
     mi: Vec<Vec<i32>>
